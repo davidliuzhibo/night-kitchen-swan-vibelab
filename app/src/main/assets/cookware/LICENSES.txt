@@ -1,0 +1,22 @@
+Night kitchen cookware. Kenney assets are not included.
+Self-baked photo-decal cookware (the previous wok, bowl, plate, egg, rice mound,
+scallion, and spatula) has been removed.
+
+wok.glb, rice-bowl.glb, egg.glb, scallion.glb, spatula.glb, plate.glb
+  Generated with Volcengine doubao-seed3d-2-0, then simplified and resized.
+  The delivered files used KHR_draco_mesh_compression as a required extension.
+  Spatial SDK 6.1.9 documents glb/gltf and does not ship a Draco decoder, so
+  these copies were decoded to standard glTF before packing. A later pass
+  reduced them to about 10k triangles and 512 PNG maps so cold start does not
+  decode the 30k-face files on the frame loop. See SIZES.md.
+
+counter.glb
+  Poly Haven small_wooden_table_01, CC0.
+  https://polyhaven.com/a/small_wooden_table_01
+
+lantern.glb, serve-bell.glb, drop-ring.glb
+  Meshes modeled for this project. Not in the Seed3D set.
+  Brass albedo is a crop of Poly Haven brass_pan_01 diffuse, CC0.
+  https://polyhaven.com/a/brass_pan_01
+
+Poly Haven license: https://polyhaven.com/license (CC0)

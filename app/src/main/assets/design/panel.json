@@ -1,0 +1,1096 @@
+{
+  "schemaVersion": "1.0",
+  "metadata": {
+    "projectName": "深夜食堂 · 夜市委托",
+    "sourceMode": "intent_only",
+    "revision": 5
+  },
+  "experience": {
+    "subject": "深夜食堂 · 夜市委托",
+    "user": "坐姿或原地站姿，使用眼手/手势射线，无手柄",
+    "context": "现有应用的新玩法面板补丁；原始场景与系统控制保留，离线运行",
+    "singleJob": "读懂熟客需求，在八类烹饪之间选菜、配置摊位，完成三个难度的四单夜市。",
+    "space": "shared",
+    "form": "volumetric",
+    "signature": "锅内火候、成品与逐单点亮的灯火；委托是另一种完整经营玩法"
+  },
+  "theme": {
+    "scheme": "vibrant",
+    "colorScheme": {
+      "fillPrimary": {
+        "source": "vibrant",
+        "role": "fillPrimary"
+      },
+      "fillSecondary": {
+        "source": "vibrant",
+        "role": "fillSecondary"
+      },
+      "fillTertiary": {
+        "source": "vibrant",
+        "role": "fillTertiary"
+      },
+      "fillLight": {
+        "source": "vibrant",
+        "role": "fillLight"
+      },
+      "labelPrimaryLight": {
+        "source": "vibrant",
+        "role": "labelPrimaryLight"
+      },
+      "labelPrimary": {
+        "source": "vibrant",
+        "role": "labelPrimary"
+      },
+      "labelSecondary": {
+        "source": "vibrant",
+        "role": "labelSecondary"
+      },
+      "labelTertiary": {
+        "source": "vibrant",
+        "role": "labelTertiary"
+      },
+      "labelQuaternary": {
+        "source": "vibrant",
+        "role": "labelQuaternary"
+      },
+      "lightenHover": {
+        "source": "vibrant",
+        "role": "lightenHover"
+      },
+      "lightenPressed": {
+        "source": "vibrant",
+        "role": "lightenPressed"
+      },
+      "error": {
+        "source": "vibrant",
+        "role": "error"
+      },
+      "alert": {
+        "source": "vibrant",
+        "role": "alert"
+      },
+      "passable": {
+        "source": "vibrant",
+        "role": "passable"
+      },
+      "interaction": {
+        "source": "vibrant",
+        "role": "interaction"
+      },
+      "dividerLine": {
+        "source": "vibrant",
+        "role": "dividerLine"
+      }
+    },
+    "brandColors": {},
+    "typography": {
+      "title": {
+        "family": "sans-serif",
+        "sizeDp": 28,
+        "lineHeightDp": 36,
+        "weight": 600
+      },
+      "body": {
+        "family": "sans-serif",
+        "sizeDp": 22,
+        "lineHeightDp": 31,
+        "weight": 400
+      },
+      "foot": {
+        "family": "sans-serif",
+        "sizeDp": 20,
+        "lineHeightDp": 28,
+        "weight": 500
+      },
+      "button": {
+        "family": "sans-serif",
+        "sizeDp": 22,
+        "lineHeightDp": 30,
+        "weight": 600
+      },
+      "food-badge-text": {
+        "family": "sans-serif",
+        "sizeDp": 20,
+        "lineHeightDp": 26,
+        "weight": 400
+      }
+    },
+    "spacing": {
+      "small": 8,
+      "regular": 16,
+      "medium": 24,
+      "large": 32
+    }
+  },
+  "initialStateId": "choose",
+  "surfaces": [
+    {
+      "id": "new-controls",
+      "type": "planar",
+      "defaultSize": {
+        "width": 440,
+        "height": 700,
+        "unit": "dp"
+      },
+      "minSize": {
+        "width": 440,
+        "height": 700,
+        "unit": "dp"
+      },
+      "maxSize": {
+        "width": 440,
+        "height": 700,
+        "unit": "dp"
+      },
+      "rootNodeId": "panel-root",
+      "placement": {
+        "mode": "retained-host",
+        "sizePolicy": "fixed existing host dimensions",
+        "materialOwner": "system-window"
+      }
+    }
+  ],
+  "nodes": [
+    {
+      "id": "panel-caption",
+      "kind": "text",
+      "content": "{title}\n{body}",
+      "textStyle": {
+        "typography": "body",
+        "color": "labelPrimary"
+      },
+      "props": {
+        "titleBinding": "title",
+        "bodyBinding": "body",
+        "titleSizeSp": 28,
+        "titleLineHeightSp": 36
+      },
+      "appearance": {
+        "fill": "fillPrimary",
+        "foreground": "labelPrimaryLight",
+        "radiusDp": 24
+      },
+      "layout": {
+        "mode": "column",
+        "paddingDp": 16,
+        "maxHeightDp": 294,
+        "overflow": "scroll"
+      }
+    },
+    {
+      "id": "night-0",
+      "kind": "spatialui",
+      "component": "sui-button",
+      "content": "{night0}",
+      "props": {
+        "size": "regular",
+        "fillWidth": true
+      },
+      "textStyle": {
+        "typography": "button",
+        "color": "labelPrimaryLight"
+      },
+      "layout": {
+        "mode": "row",
+        "minHeightDp": 56
+      },
+      "events": {
+        "click": "night-0-action"
+      },
+      "visibleInStates": [
+        "choose"
+      ]
+    },
+    {
+      "id": "dish-0",
+      "kind": "spatialui",
+      "component": "sui-button",
+      "content": "{dish0}",
+      "props": {
+        "size": "regular",
+        "fillWidth": true
+      },
+      "textStyle": {
+        "typography": "button",
+        "color": "labelPrimaryLight"
+      },
+      "layout": {
+        "mode": "row",
+        "minHeightDp": 56
+      },
+      "events": {
+        "click": "dish-0-action"
+      },
+      "visibleInStates": [
+        "order"
+      ]
+    },
+    {
+      "id": "night-1",
+      "kind": "spatialui",
+      "component": "sui-button",
+      "content": "{night1}",
+      "props": {
+        "size": "regular",
+        "fillWidth": true
+      },
+      "textStyle": {
+        "typography": "button",
+        "color": "labelPrimaryLight"
+      },
+      "layout": {
+        "mode": "row",
+        "minHeightDp": 56
+      },
+      "events": {
+        "click": "night-1-action"
+      },
+      "visibleInStates": [
+        "choose"
+      ]
+    },
+    {
+      "id": "dish-1",
+      "kind": "spatialui",
+      "component": "sui-button",
+      "content": "{dish1}",
+      "props": {
+        "size": "regular",
+        "fillWidth": true
+      },
+      "textStyle": {
+        "typography": "button",
+        "color": "labelPrimaryLight"
+      },
+      "layout": {
+        "mode": "row",
+        "minHeightDp": 56
+      },
+      "events": {
+        "click": "dish-1-action"
+      },
+      "visibleInStates": [
+        "order"
+      ]
+    },
+    {
+      "id": "night-2",
+      "kind": "spatialui",
+      "component": "sui-button",
+      "content": "{night2}",
+      "props": {
+        "size": "regular",
+        "fillWidth": true
+      },
+      "textStyle": {
+        "typography": "button",
+        "color": "labelPrimaryLight"
+      },
+      "layout": {
+        "mode": "row",
+        "minHeightDp": 56
+      },
+      "events": {
+        "click": "night-2-action"
+      },
+      "visibleInStates": [
+        "choose"
+      ]
+    },
+    {
+      "id": "dish-2",
+      "kind": "spatialui",
+      "component": "sui-button",
+      "content": "{dish2}",
+      "props": {
+        "size": "regular",
+        "fillWidth": true
+      },
+      "textStyle": {
+        "typography": "button",
+        "color": "labelPrimaryLight"
+      },
+      "layout": {
+        "mode": "row",
+        "minHeightDp": 56
+      },
+      "events": {
+        "click": "dish-2-action"
+      },
+      "visibleInStates": [
+        "order"
+      ]
+    },
+    {
+      "id": "gear-explanation",
+      "kind": "text",
+      "content": "{gearHelp}",
+      "textStyle": {
+        "typography": "body",
+        "color": "labelPrimaryLight"
+      },
+      "visibleInStates": [
+        "gear"
+      ],
+      "appearance": {
+        "fill": "fillPrimary",
+        "foreground": "labelPrimaryLight",
+        "radiusDp": 16
+      },
+      "layout": {
+        "paddingDp": 12
+      }
+    },
+    {
+      "id": "gear-steady",
+      "kind": "spatialui",
+      "component": "sui-button",
+      "content": "{gearSTEADY}",
+      "props": {
+        "size": "regular",
+        "fillWidth": true
+      },
+      "textStyle": {
+        "typography": "button",
+        "color": "labelPrimaryLight"
+      },
+      "layout": {
+        "mode": "row",
+        "minHeightDp": 56
+      },
+      "events": {
+        "click": "gear-steady-action"
+      },
+      "visibleInStates": [
+        "gear"
+      ],
+      "bindings": {
+        "enabled": "buySTEADY"
+      }
+    },
+    {
+      "id": "gear-warm",
+      "kind": "spatialui",
+      "component": "sui-button",
+      "content": "{gearWARM}",
+      "props": {
+        "size": "regular",
+        "fillWidth": true
+      },
+      "textStyle": {
+        "typography": "button",
+        "color": "labelPrimaryLight"
+      },
+      "layout": {
+        "mode": "row",
+        "minHeightDp": 56
+      },
+      "events": {
+        "click": "gear-warm-action"
+      },
+      "visibleInStates": [
+        "gear"
+      ],
+      "bindings": {
+        "enabled": "buyWARM"
+      }
+    },
+    {
+      "id": "gear-flavor",
+      "kind": "spatialui",
+      "component": "sui-button",
+      "content": "{gearFLAVOR}",
+      "props": {
+        "size": "regular",
+        "fillWidth": true
+      },
+      "textStyle": {
+        "typography": "button",
+        "color": "labelPrimaryLight"
+      },
+      "layout": {
+        "mode": "row",
+        "minHeightDp": 56
+      },
+      "events": {
+        "click": "gear-flavor-action"
+      },
+      "visibleInStates": [
+        "gear"
+      ],
+      "bindings": {
+        "enabled": "buyFLAVOR"
+      }
+    },
+    {
+      "id": "retry",
+      "kind": "spatialui",
+      "component": "sui-button",
+      "content": "重做当前单",
+      "props": {
+        "size": "regular",
+        "fillWidth": true
+      },
+      "textStyle": {
+        "typography": "button",
+        "color": "labelPrimaryLight"
+      },
+      "layout": {
+        "mode": "row",
+        "minHeightDp": 56
+      },
+      "events": {
+        "click": "retry-action"
+      },
+      "visibleInStates": [
+        "review"
+      ]
+    },
+    {
+      "id": "reselect-review",
+      "kind": "spatialui",
+      "component": "sui-button",
+      "content": "重新选菜",
+      "props": {
+        "size": "regular",
+        "fillWidth": true
+      },
+      "textStyle": {
+        "typography": "button",
+        "color": "labelPrimaryLight"
+      },
+      "layout": {
+        "mode": "row",
+        "minHeightDp": 56
+      },
+      "events": {
+        "click": "reselect-review-action"
+      },
+      "visibleInStates": [
+        "review"
+      ]
+    },
+    {
+      "id": "cook",
+      "kind": "spatialui",
+      "component": "sui-button",
+      "content": "开始料理",
+      "props": {
+        "size": "regular",
+        "fillWidth": true
+      },
+      "textStyle": {
+        "typography": "button",
+        "color": "labelPrimaryLight"
+      },
+      "layout": {
+        "mode": "row",
+        "minHeightDp": 56
+      },
+      "events": {
+        "click": "cook-action"
+      },
+      "visibleInStates": [
+        "gear"
+      ]
+    },
+    {
+      "id": "reselect-gear",
+      "kind": "spatialui",
+      "component": "sui-button",
+      "content": "重新选菜",
+      "props": {
+        "size": "regular",
+        "fillWidth": true
+      },
+      "textStyle": {
+        "typography": "button",
+        "color": "labelPrimaryLight"
+      },
+      "layout": {
+        "mode": "row",
+        "minHeightDp": 56
+      },
+      "events": {
+        "click": "reselect-gear-action"
+      },
+      "visibleInStates": [
+        "gear"
+      ]
+    },
+    {
+      "id": "next",
+      "kind": "spatialui",
+      "component": "sui-button",
+      "content": "{nextLabel}",
+      "props": {
+        "size": "regular",
+        "fillWidth": true
+      },
+      "textStyle": {
+        "typography": "button",
+        "color": "labelPrimaryLight"
+      },
+      "layout": {
+        "mode": "row",
+        "minHeightDp": 56
+      },
+      "events": {
+        "click": "next-action"
+      },
+      "visibleInStates": [
+        "review"
+      ],
+      "bindings": {
+        "enabled": "passed"
+      }
+    },
+    {
+      "id": "again",
+      "kind": "spatialui",
+      "component": "sui-button",
+      "content": "再选一晚",
+      "props": {
+        "size": "regular",
+        "fillWidth": true
+      },
+      "textStyle": {
+        "typography": "button",
+        "color": "labelPrimaryLight"
+      },
+      "layout": {
+        "mode": "row",
+        "minHeightDp": 56
+      },
+      "events": {
+        "click": "again-action"
+      },
+      "visibleInStates": [
+        "complete"
+      ]
+    },
+    {
+      "id": "courses",
+      "kind": "spatialui",
+      "component": "sui-button",
+      "content": "回到八道厨艺课程",
+      "props": {
+        "size": "regular",
+        "fillWidth": true
+      },
+      "textStyle": {
+        "typography": "button",
+        "color": "labelPrimaryLight"
+      },
+      "layout": {
+        "mode": "row",
+        "minHeightDp": 56
+      },
+      "events": {
+        "click": "courses-action"
+      },
+      "visibleInStates": [
+        "choose"
+      ]
+    },
+    {
+      "id": "panel-body",
+      "kind": "layout",
+      "layout": {
+        "mode": "scroll",
+        "gapDp": 10,
+        "grow": 1
+      },
+      "children": [
+        "night-0",
+        "dish-0",
+        "night-1",
+        "dish-1",
+        "night-2",
+        "dish-2",
+        "gear-explanation",
+        "gear-steady",
+        "gear-warm",
+        "gear-flavor",
+        "retry",
+        "reselect-review"
+      ]
+    },
+    {
+      "id": "panel-footer",
+      "kind": "layout",
+      "layout": {
+        "mode": "column",
+        "gapDp": 8,
+        "maxHeightDp": 244,
+        "overflow": "scroll"
+      },
+      "children": [
+        "cook",
+        "reselect-gear",
+        "next",
+        "again",
+        "courses"
+      ]
+    },
+    {
+      "id": "panel-root",
+      "kind": "layout",
+      "layout": {
+        "mode": "column",
+        "gapDp": 12,
+        "paddingDp": 20
+      },
+      "children": [
+        "panel-caption",
+        "panel-body",
+        "panel-footer"
+      ]
+    },
+    {
+      "id": "food-badge",
+      "kind": "text",
+      "content": "{hostText}",
+      "bindings": {
+        "text": "retainedHost.food-badge"
+      },
+      "textStyle": {
+        "typography": "food-badge-text",
+        "color": "labelPrimaryLight"
+      },
+      "appearance": {
+        "fill": "fillPrimary",
+        "foreground": "labelPrimaryLight",
+        "radiusDp": 14
+      },
+      "props": {
+        "ownership": "retained-native",
+        "contractFile": "design/fidelity-r4-20261101/retained-host-contract.json",
+        "sourceSymbol": "BadgeFace"
+      }
+    }
+  ],
+  "states": [
+    {
+      "id": "choose",
+      "surfaceRoots": {
+        "new-controls": "panel-root"
+      }
+    },
+    {
+      "id": "order",
+      "surfaceRoots": {
+        "new-controls": "panel-root"
+      }
+    },
+    {
+      "id": "gear",
+      "surfaceRoots": {
+        "new-controls": "panel-root"
+      }
+    },
+    {
+      "id": "review",
+      "surfaceRoots": {
+        "new-controls": "panel-root"
+      }
+    },
+    {
+      "id": "complete",
+      "surfaceRoots": {
+        "new-controls": "panel-root"
+      }
+    }
+  ],
+  "actions": [
+    {
+      "id": "night-0-action",
+      "type": "custom",
+      "purpose": "{night0}",
+      "binding": "productionCommand",
+      "payload": {
+        "command": "night:0",
+        "productionOutcomes": [
+          {
+            "transitionId": "choose-night-0",
+            "to": "order",
+            "predicate": "Visible/enabled source-state command is dispatched to the existing guarded reducer; rejection leaves state unchanged. Physical events are reducer/referee owned.",
+            "contractFile": "design/fidelity-r4-20261101/production-transition-contract.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dish-0-action",
+      "type": "custom",
+      "purpose": "{dish0}",
+      "binding": "productionCommand",
+      "payload": {
+        "command": "dish:0",
+        "productionOutcomes": [
+          {
+            "transitionId": "choose-dish-0",
+            "to": "gear",
+            "predicate": "Visible/enabled source-state command is dispatched to the existing guarded reducer; rejection leaves state unchanged. Physical events are reducer/referee owned.",
+            "contractFile": "design/fidelity-r4-20261101/production-transition-contract.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "night-1-action",
+      "type": "custom",
+      "purpose": "{night1}",
+      "binding": "productionCommand",
+      "payload": {
+        "command": "night:1",
+        "productionOutcomes": [
+          {
+            "transitionId": "choose-night-1",
+            "to": "order",
+            "predicate": "Visible/enabled source-state command is dispatched to the existing guarded reducer; rejection leaves state unchanged. Physical events are reducer/referee owned.",
+            "contractFile": "design/fidelity-r4-20261101/production-transition-contract.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dish-1-action",
+      "type": "custom",
+      "purpose": "{dish1}",
+      "binding": "productionCommand",
+      "payload": {
+        "command": "dish:1",
+        "productionOutcomes": [
+          {
+            "transitionId": "choose-dish-1",
+            "to": "gear",
+            "predicate": "Visible/enabled source-state command is dispatched to the existing guarded reducer; rejection leaves state unchanged. Physical events are reducer/referee owned.",
+            "contractFile": "design/fidelity-r4-20261101/production-transition-contract.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "night-2-action",
+      "type": "custom",
+      "purpose": "{night2}",
+      "binding": "productionCommand",
+      "payload": {
+        "command": "night:2",
+        "productionOutcomes": [
+          {
+            "transitionId": "choose-night-2",
+            "to": "order",
+            "predicate": "Visible/enabled source-state command is dispatched to the existing guarded reducer; rejection leaves state unchanged. Physical events are reducer/referee owned.",
+            "contractFile": "design/fidelity-r4-20261101/production-transition-contract.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dish-2-action",
+      "type": "custom",
+      "purpose": "{dish2}",
+      "binding": "productionCommand",
+      "payload": {
+        "command": "dish:2",
+        "productionOutcomes": [
+          {
+            "transitionId": "choose-dish-2",
+            "to": "gear",
+            "predicate": "Visible/enabled source-state command is dispatched to the existing guarded reducer; rejection leaves state unchanged. Physical events are reducer/referee owned.",
+            "contractFile": "design/fidelity-r4-20261101/production-transition-contract.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gear-steady-action",
+      "type": "custom",
+      "purpose": "{gearSTEADY}",
+      "binding": "productionCommand",
+      "payload": {
+        "command": "gear:STEADY",
+        "productionOutcomes": [
+          {
+            "transitionId": "buy-steady",
+            "to": "gear",
+            "predicate": "GEAR && coins >= 4 && new non-original gear; stage remains GEAR",
+            "contractFile": "design/fidelity-r4-20261101/production-transition-contract.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gear-warm-action",
+      "type": "custom",
+      "purpose": "{gearWARM}",
+      "binding": "productionCommand",
+      "payload": {
+        "command": "gear:WARM",
+        "productionOutcomes": [
+          {
+            "transitionId": "buy-warm",
+            "to": "gear",
+            "predicate": "GEAR && coins >= 4 && new non-original gear; stage remains GEAR",
+            "contractFile": "design/fidelity-r4-20261101/production-transition-contract.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gear-flavor-action",
+      "type": "custom",
+      "purpose": "{gearFLAVOR}",
+      "binding": "productionCommand",
+      "payload": {
+        "command": "gear:FLAVOR",
+        "productionOutcomes": [
+          {
+            "transitionId": "buy-flavor",
+            "to": "gear",
+            "predicate": "GEAR && coins >= 4 && new non-original gear; stage remains GEAR",
+            "contractFile": "design/fidelity-r4-20261101/production-transition-contract.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "retry-action",
+      "type": "custom",
+      "purpose": "重做当前单",
+      "binding": "productionCommand",
+      "payload": {
+        "command": "retry"
+      }
+    },
+    {
+      "id": "reselect-review-action",
+      "type": "custom",
+      "purpose": "重新选菜",
+      "binding": "productionCommand",
+      "payload": {
+        "command": "reselect",
+        "productionOutcomes": [
+          {
+            "transitionId": "reselect-review",
+            "to": "order",
+            "predicate": "Visible/enabled source-state command is dispatched to the existing guarded reducer; rejection leaves state unchanged. Physical events are reducer/referee owned.",
+            "contractFile": "design/fidelity-r4-20261101/production-transition-contract.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cook-action",
+      "type": "custom",
+      "purpose": "开始料理",
+      "binding": "productionCommand",
+      "payload": {
+        "command": "cook"
+      }
+    },
+    {
+      "id": "reselect-gear-action",
+      "type": "custom",
+      "purpose": "重新选菜",
+      "binding": "productionCommand",
+      "payload": {
+        "command": "reselect",
+        "productionOutcomes": [
+          {
+            "transitionId": "reselect-gear",
+            "to": "order",
+            "predicate": "Visible/enabled source-state command is dispatched to the existing guarded reducer; rejection leaves state unchanged. Physical events are reducer/referee owned.",
+            "contractFile": "design/fidelity-r4-20261101/production-transition-contract.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "next-action",
+      "type": "custom",
+      "purpose": "{nextLabel}",
+      "binding": "productionCommand",
+      "payload": {
+        "command": "next",
+        "productionOutcomes": [
+          {
+            "transitionId": "next-order",
+            "to": "order",
+            "predicate": "REVIEW && passed; ticket == 3 -> complete, otherwise order",
+            "contractFile": "design/fidelity-r4-20261101/production-transition-contract.json"
+          },
+          {
+            "transitionId": "last-order",
+            "to": "complete",
+            "predicate": "REVIEW && passed; ticket == 3 -> complete, otherwise order",
+            "contractFile": "design/fidelity-r4-20261101/production-transition-contract.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "again-action",
+      "type": "custom",
+      "purpose": "再选一晚",
+      "binding": "productionCommand",
+      "payload": {
+        "command": "open",
+        "productionOutcomes": [
+          {
+            "transitionId": "another-night",
+            "to": "choose",
+            "predicate": "Visible/enabled source-state command is dispatched to the existing guarded reducer; rejection leaves state unchanged. Physical events are reducer/referee owned.",
+            "contractFile": "design/fidelity-r4-20261101/production-transition-contract.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "courses-action",
+      "type": "custom",
+      "purpose": "回到八道厨艺课程",
+      "binding": "productionCommand",
+      "payload": {
+        "command": "courses"
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "id": "choose-night-0",
+      "from": "choose",
+      "to": "order",
+      "trigger": {
+        "nodeId": "night-0",
+        "event": "click"
+      }
+    },
+    {
+      "id": "choose-dish-0",
+      "from": "order",
+      "to": "gear",
+      "trigger": {
+        "nodeId": "dish-0",
+        "event": "click"
+      }
+    },
+    {
+      "id": "choose-night-1",
+      "from": "choose",
+      "to": "order",
+      "trigger": {
+        "nodeId": "night-1",
+        "event": "click"
+      }
+    },
+    {
+      "id": "choose-dish-1",
+      "from": "order",
+      "to": "gear",
+      "trigger": {
+        "nodeId": "dish-1",
+        "event": "click"
+      }
+    },
+    {
+      "id": "choose-night-2",
+      "from": "choose",
+      "to": "order",
+      "trigger": {
+        "nodeId": "night-2",
+        "event": "click"
+      }
+    },
+    {
+      "id": "choose-dish-2",
+      "from": "order",
+      "to": "gear",
+      "trigger": {
+        "nodeId": "dish-2",
+        "event": "click"
+      }
+    },
+    {
+      "id": "buy-steady",
+      "from": "gear",
+      "to": "gear",
+      "trigger": {
+        "nodeId": "gear-steady",
+        "event": "click"
+      }
+    },
+    {
+      "id": "buy-warm",
+      "from": "gear",
+      "to": "gear",
+      "trigger": {
+        "nodeId": "gear-warm",
+        "event": "click"
+      }
+    },
+    {
+      "id": "buy-flavor",
+      "from": "gear",
+      "to": "gear",
+      "trigger": {
+        "nodeId": "gear-flavor",
+        "event": "click"
+      }
+    },
+    {
+      "id": "reselect-gear",
+      "from": "gear",
+      "to": "order",
+      "trigger": {
+        "nodeId": "reselect-gear",
+        "event": "click"
+      }
+    },
+    {
+      "id": "reselect-review",
+      "from": "review",
+      "to": "order",
+      "trigger": {
+        "nodeId": "reselect-review",
+        "event": "click"
+      }
+    },
+    {
+      "id": "next-order",
+      "from": "review",
+      "to": "order",
+      "trigger": {
+        "nodeId": "next",
+        "event": "click"
+      }
+    },
+    {
+      "id": "last-order",
+      "from": "review",
+      "to": "complete",
+      "trigger": {
+        "nodeId": "next",
+        "event": "click"
+      }
+    },
+    {
+      "id": "another-night",
+      "from": "complete",
+      "to": "choose",
+      "trigger": {
+        "nodeId": "again",
+        "event": "click"
+      }
+    }
+  ],
+  "responsiveRules": [],
+  "assets": [],
+  "dataCases": {
+    "normal": {},
+    "fallback": {},
+    "error": {}
+  }
+}
